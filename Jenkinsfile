@@ -8,8 +8,8 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/RaoUmair55/testJenkin.git'
-            }
+        git branch: 'main', url: 'https://github.com/RaoUmair55/testJenkin.git'
+    }
         }
 
         stage('Build Docker Image') {
