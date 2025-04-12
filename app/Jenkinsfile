@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/yourusername/myapp.git'
+                git 'https://github.com/RaoUmair55/testJenkin.git'
             }
         }
 
@@ -23,7 +23,7 @@ pipeline {
                 // Stop and remove old container if exists
                 sh 'docker rm -f webapp || true'
                 // Run new container
-                sh 'docker run -d --name webapp -p 8080:80 $IMAGE_NAME:latest'
+                sh 'docker run -d --name webapp -p 8081:80 $IMAGE_NAME:latest'
             }
         }
     }
