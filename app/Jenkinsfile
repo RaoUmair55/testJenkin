@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = 'hassan/webapp'
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/yourusername/myapp.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t $IMAGE_NAME:latest .'
+            }
+        }
+
+        stage('Deploy Container') {
+            steps {
+                // Stop and remove old container if exists
+                sh 'docker rm -f webapp || true'
+                // Run new container
+                sh 'docker run -d --name webapp -p 8080:80 $IMAGE_NAME:latest'
+            }
+        }
+    }
+}
